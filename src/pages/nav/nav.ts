@@ -1,29 +1,34 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, List, App } from 'ionic-angular';
+import { NavController, Platform, List, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { FarmingPage } from '../pages/farming/farming';
-import { QuestionBoardPage } from './../pages/questionBoard/questionBoard';
-import { ShareBoardPage } from './../pages/shareBoard/shareBoard';
-import { FarmingEditPage } from './../pages/farming-edit/farming-edit';
-import { MyPage } from './../pages/my/my';
-import { LoginPage } from './../pages/login/login';
+import { HomePage } from '../home/home';
+import { ListPage } from '../list/list';
+import { FarmingPage } from '../farming/farming';
+import { QuestionBoardPage } from './../questionBoard/questionBoard';
+import { ShareBoardPage } from './../shareBoard/shareBoard';
+import { FarmingEditPage } from './../farming-edit/farming-edit';
+import { MyPage } from './../my/my';
+
+/**
+ * Generated class for the NavPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @Component({
-  selector: 'app',
-  templateUrl: 'app.html'
+  selector: 'page-nav',
+  templateUrl: 'nav.html',
 })
-export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+export class NavPage {
 
-  rootPage: any = LoginPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, subMenu: Array<{title: string, component: any}>}>;
 
-  constructor(private app: App, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public navCtrl: NavController, private app: App, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -56,8 +61,8 @@ export class MyApp {
         //   },2000)
         // }
 
-        if(this.nav.canGoBack()){
-          this.nav.pop();
+        if(this.navCtrl.canGoBack()){
+          this.navCtrl.pop();
         }else{
           this.platform.exitApp();
         }
@@ -77,16 +82,15 @@ export class MyApp {
   }
 
   goMy(){
-    var nav = this.app.getRootNav();
-    nav.push(MyPage);
+    this.navCtrl.push(MyPage);
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    //this.nav.setRoot(page.component);
-    var nav = this.app.getRootNav();
-    nav.push(page.component);
+    this.navCtrl.push(page.component);
+    // var nav = this.app.getRootNav();
+    // nav.push(page.component);
   }
 
 }

@@ -1,0 +1,46 @@
+page-farming-detail {
+    .item.item-md .checkbox-md{
+        margin: 10px 8px 9px 0px;
+    }
+    .iconXl{
+        zoom: 1.5;
+    }
+    .item{
+        padding:0px;
+    }
+    .select{
+        padding:13px 8px;
+    }
+    ion-select{
+        width:100%;
+        max-width: 100%;
+    }
+    .save{
+        margin-top: 10px;
+    }
+    .light{
+        color:rgb(155, 155, 155);
+    }
+    .textBox{
+        min-height: 250px;
+        border-radius: 5px;
+        padding: 10px;
+        border:1px solid rgb(209, 209, 209);
+    }
+    .card{
+        margin: 15px 0px 10px 0px;
+        width:100%;
+    }
+    .date{
+        font-size: 10px;
+    }
+    .text-input{
+        margin:0px;
+    }
+    .grid{
+        padding:0px;
+    }
+    ion-icon{
+        margin:0px 10px 0px 5px
+    }
+}

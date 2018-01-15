@@ -1,0 +1,25 @@
+page-my {
+    .iconXl{
+        zoom: 1.5;
+    }
+    .item{
+        min-height: 7rem;
+    }
+    ion-select{
+        max-width: 100%;
+    }
+    .select{
+        padding:0px 8px 0px 0px;
+    }
+    .listHeader{
+        min-height: 3rem;
+    }
+    .item ion-thumbnail ion-img,
+    .item ion-thumbnail img {
+        width: auto !important;
+        padding:7px 0px 7px 0px;
+    }
+    .iconSm{
+        zoom: 0.7;
+    }
+}

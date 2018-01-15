@@ -1,0 +1,91 @@
+<!--
+  Generated template for the FarmingDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>글 보기</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-item col-6>
+        딸기
+      </ion-item>
+      <ion-col></ion-col>
+      <ion-item col-4>
+        <ion-label>알람</ion-label>
+        <ion-checkbox checked="true"></ion-checkbox>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item col-6>
+        <p class="lihgt">딸기</p>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        제목 입력 완료
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item col-5>
+        01월 01일
+      </ion-item>
+      <ion-col>~</ion-col>
+      <ion-item col-5>
+        03월 31일
+      </ion-item>
+    </ion-row>
+  </ion-grid>
+  <div class="textBox" [froalaView]="editorContent"></div>
+  <!--
+  <ion-row padding style="float:right;">
+    추천 1개<ion-icon name="thumbs-up" color="primary"></ion-icon> 
+    비추천 2개<ion-icon name="thumbs-down" color="primary"></ion-icon>
+  </ion-row>
+-->
+  <ion-row>
+    <button ion-button round color="dark" outline class="save">수정</button>
+    <button ion-button round color="danger" outline class="save">삭제</button>
+  </ion-row>
+
+  <ion-card>
+    <ion-card-content>
+      <div text-center>댓글이 없습니다.</div>
+      <ion-list>
+        <ion-item>
+          <h3>댓글쓴이 <span class="date light">2017.03.01 10:58</span></h3>
+          <div>댓글 내용</div>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="return-right"></ion-icon>
+          <h3>대댓글쓴이 <span class="date light">2017.03.01 10:58</span></h3>
+          <div>댓글 내용</div>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-textarea placeholder="댓글을 입력해주세요."></ion-textarea>
+        <button ion-button small item-end >등록</button>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title text-center (click)="scrollToTop()">작성 글</ion-title>
+      <ion-buttons end>
+        <button ion-button clear (click)="openMenu()">
+          <ion-icon name="menu" class="iconXl"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+  
+    <ion-toolbar>
+      <button ion-button color="dark" clear full icon-right (click)="goMyEdit()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-11 text-left>
+              user
+            </ion-col>
+            <ion-col col-1>
+              <ion-icon name='settings' item-end></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </button>
+    </ion-toolbar>
+    
+    <ion-list>
+      <ion-item (click)="goFarmingDetail()">
+        <ion-thumbnail item-start>
+          <img src="../assets/imgs/logo.png">
+        </ion-thumbnail>
+        <h2>My Neighbor Totoro</h2>
+        <p>01/01-03/31</p>
+        <p>Hayao Miyazaki • 1988</p>
+      </ion-item>
+      <ion-item (click)="goFarmingEdit()">
+        <h2>My Neighbor Totoro</h2>
+        <p>01/01-03/31</p>
+        <p>Hayao Miyazaki • 1988</p>
+      </ion-item>
+    </ion-list>
+  
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>

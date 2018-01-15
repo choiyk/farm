@@ -1,0 +1,73 @@
+<!--
+  Generated template for the FarmingEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>새 글 작성</ion-title>
+    <!--
+    <ion-buttons end>
+      <button ion-button clear (click)="openMenu()">
+        <ion-icon name="menu" class="iconXl"></ion-icon>
+      </button>
+    </ion-buttons>
+  -->
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-item col-6>
+        <ion-select [(ngModel)]="gaming" placeholder="내 작물">
+          <ion-option>딸기</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item col-6>
+        <ion-label text-right>알람</ion-label>
+        <ion-toggle></ion-toggle>
+      </ion-item>
+      <!--
+      <ion-item col-4>
+        <ion-label>알람</ion-label>
+        <ion-checkbox [(ngModel)]="pepperoni" end></ion-checkbox>
+      </ion-item>
+    -->
+    </ion-row>
+    <ion-row>
+      <ion-item col-6>
+        <ion-select [(ngModel)]="gaming" placeholder="내 작물">
+          <ion-option>딸기</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item col-6>
+        <ion-select [(ngModel)]="gaming" placeholder="내 작물">
+          <ion-option>딸기</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-input type="text" placeholder="제목을 입력하세요"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item col-5>
+        <ion-datetime displayFormat="MMM DD" pickerFormat="MMM DD" placeholder="시작일"></ion-datetime>
+      </ion-item>
+      <ion-col>~</ion-col>
+      <ion-item col-5>
+        <ion-datetime displayFormat="MMM DD" pickerFormat="MMM DD" placeholder="종료일"></ion-datetime>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
+  <!--<div [froalaEditor]='options'></div>-->
+  <ion-textarea placeholder="내용을 입력하세요."></ion-textarea>
+  <button ion-button round class="save">저장</button>
+</ion-content>
+

@@ -1,0 +1,34 @@
+<ion-menu type="overlay" side="right" [content]="content">
+    <ion-content>
+      <ion-item-group *ngFor="let p of pages">
+        <ion-item-divider color="light">
+          {{p.title}}
+          <ion-icon name="arrow-dropdown" item-end class="iconSm"></ion-icon>
+        </ion-item-divider>
+        <ion-item-group *ngFor="let sm of p.subMenu">
+          <ion-item menuClose (click)="openPage(sm)">{{sm.title}}</ion-item>
+        </ion-item-group>
+      </ion-item-group>
+    </ion-content>
+  
+    <ion-footer>
+      <ion-toolbar>
+        <button ion-button color="dark" clear full icon-right menuClose (click)="goMy()">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-11 text-left>
+                user
+              </ion-col>
+              <ion-col col-1>
+                <ion-icon name='settings' item-end></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </button>
+      </ion-toolbar>
+    </ion-footer>
+  
+  </ion-menu>
+  
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
