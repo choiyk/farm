@@ -1,6 +1,6 @@
 {
   "name": "farm",
-  "app_id": "b2a4757f",
+  "app_id": "cb8251ed",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
