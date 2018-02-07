@@ -17,16 +17,21 @@
   <ion-list>
     <ion-item>
       <ion-label>이메일</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="email" [(ngModel)]="user.email" (change)="checkEmail($event)"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="isEmail == false">
+      <p class="err"><ion-icon name="alert"></ion-icon>이메일 형식이 옳바르지 않습니다.</p>
     </ion-item>
     <ion-item>
       <ion-label>닉네임</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.nickname"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>비밀번호</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="user.pw"></ion-input>
     </ion-item>
+  </ion-list>
+    <!--
     <ion-item>
       <ion-label>내 작물</ion-label>
       <ion-input type="text" class="inputMin"></ion-input>
@@ -35,7 +40,8 @@
   <button ion-button clear style="float:right; font-size:1.3rem;">
     작물 추가 <ion-icon name="add-circle" color="dark"></ion-icon>
   </button>
+-->
   <div padding>
-    <button ion-button block (click)="goHome()">회원가입</button>
+    <button ion-button block (click)="join()">회원가입</button>
   </div>
 </ion-content>

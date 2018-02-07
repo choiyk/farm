@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { NavPage } from './nav';
+import { CroplistPage } from './croplist';
 
 @NgModule({
   declarations: [
-    NavPage,
+    CroplistPage,
   ],
   imports: [
-    IonicPageModule.forChild(NavPage),
+    IonicPageModule.forChild(CroplistPage),
   ],
 })
-export class NavPageModule {}
+export class CroplistPageModule {}

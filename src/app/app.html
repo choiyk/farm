@@ -17,7 +17,7 @@
         <ion-grid>
           <ion-row>
             <ion-col col-11 text-left>
-              user
+              <div *ngIf="nickname">{{nickname}}</div>
             </ion-col>
             <ion-col col-1>
               <ion-icon name='settings' item-end></ion-icon>

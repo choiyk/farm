@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title text-center>새 글 작성</ion-title>
+    <ion-title text-center (click)="scrollToTop()" *ngIf="page">{{page.name}}</ion-title>
     <!--
     <ion-buttons end>
       <button ion-button clear (click)="openMenu()">
@@ -20,17 +20,21 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="farming">
   <ion-grid>
     <ion-row>
-      <ion-item col-6>
-        <ion-select [(ngModel)]="gaming" placeholder="내 작물">
-          <ion-option>딸기</ion-option>
-        </ion-select>
+      <ion-item col-12>
+        <button ion-button item-end clear small style="margin:0px;" (click)="addMyCrop()">내 작물 추가<ion-icon name="add-circle"></ion-icon></button>
+      </ion-item>
+    </ion-row>
+
+    <ion-row *ngIf="page.pid==1">
+      <ion-item col-6 *ngIf="myCrops && selectedCrop">
+          <div (click)="showMyCrop()">{{selectedCrop}}<ion-icon name="arrow-dropdown" item-end></ion-icon> </div>
       </ion-item>
       <ion-item col-6>
         <ion-label text-right>알람</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle [(ngModel)]="farming.alarm"></ion-toggle>
       </ion-item>
       <!--
       <ion-item col-4>
@@ -39,6 +43,7 @@
       </ion-item>
     -->
     </ion-row>
+<!--
     <ion-row>
       <ion-item col-6>
         <ion-select [(ngModel)]="gaming" placeholder="내 작물">
@@ -51,23 +56,24 @@
         </ion-select>
       </ion-item>
     </ion-row>
+  -->
     <ion-row>
       <ion-item>
-        <ion-input type="text" placeholder="제목을 입력하세요"></ion-input>
+        <ion-input type="text" placeholder="제목을 입력하세요" [(ngModel)]="farming.title"></ion-input>
       </ion-item>
     </ion-row>
     <ion-row>
       <ion-item col-5>
-        <ion-datetime displayFormat="MMM DD" pickerFormat="MMM DD" placeholder="시작일"></ion-datetime>
+        <ion-datetime displayFormat="YYYY/MM/DD" placeholder="시작일" [(ngModel)]="farming.startDate"></ion-datetime>
       </ion-item>
       <ion-col>~</ion-col>
       <ion-item col-5>
-        <ion-datetime displayFormat="MMM DD" pickerFormat="MMM DD" placeholder="종료일"></ion-datetime>
+        <ion-datetime displayFormat="YYYY/MM/DD" placeholder="종료일" [(ngModel)]="farming.endDate"></ion-datetime>
       </ion-item>
     </ion-row>
   </ion-grid>
   <!--<div [froalaEditor]='options'></div>-->
-  <ion-textarea placeholder="내용을 입력하세요."></ion-textarea>
-  <button ion-button round class="save">저장</button>
+  <ion-textarea placeholder="내용을 입력하세요." [(ngModel)]="farming.memo"></ion-textarea>
+  <button ion-button round class="save" (click)="save()">저장</button>
 </ion-content>
 

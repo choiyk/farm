@@ -7,26 +7,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>글 보기</ion-title>
+    <ion-title *ngIf="page">{{page.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="farming">
   <ion-grid>
     <ion-row>
       <ion-item col-6>
-        딸기
+        {{farming.myCrop.crop}}
       </ion-item>
       <ion-col></ion-col>
       <ion-item col-4>
         <ion-label>알람</ion-label>
-        <ion-checkbox checked="true"></ion-checkbox>
+        <ion-checkbox [checked]="farming.alarm==1?true:false" disabled></ion-checkbox>
       </ion-item>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="page.pid!=1">
       <ion-item col-6>
         <p class="lihgt">딸기</p>
       </ion-item>
@@ -34,33 +34,34 @@
 
     <ion-row>
       <ion-item>
-        제목 입력 완료
+        {{farming.title}}
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item col-5>
-        01월 01일
+        {{farming.startDate}}
       </ion-item>
       <ion-col>~</ion-col>
       <ion-item col-5>
-        03월 31일
+        {{farming.endDate}}
       </ion-item>
     </ion-row>
   </ion-grid>
-  <div class="textBox" [froalaView]="editorContent"></div>
-  <!--
-  <ion-row padding style="float:right;">
+  <div class="textBox">{{farming.memo}}</div>
+  <!-- <div class="textBox" [froalaView]="editorContent"></div> -->
+
+  <ion-row padding style="float:right;" *ngIf="page.pid!=1">
     추천 1개<ion-icon name="thumbs-up" color="primary"></ion-icon> 
     비추천 2개<ion-icon name="thumbs-down" color="primary"></ion-icon>
   </ion-row>
--->
+
   <ion-row>
-    <button ion-button round color="dark" outline class="save">수정</button>
-    <button ion-button round color="danger" outline class="save">삭제</button>
+    <button ion-button round color="dark" outline class="save" (click)="edit(farming.id)">수정</button>
+    <button ion-button round color="danger" outline class="save" (click)="delete(farming.id)">삭제</button>
   </ion-row>
 
-  <ion-card>
+  <ion-card *ngIf="page.pid!=1">
     <ion-card-content>
       <div text-center>댓글이 없습니다.</div>
       <ion-list>
@@ -69,8 +70,7 @@
           <div>댓글 내용</div>
         </ion-item>
         <ion-item>
-          <ion-icon name="return-right"></ion-icon>
-          <h3>대댓글쓴이 <span class="date light">2017.03.01 10:58</span></h3>
+          <h3><ion-icon name="return-right"></ion-icon>대댓글쓴이 <span class="date light">2017.03.01 10:58</span></h3>
           <div>댓글 내용</div>
         </ion-item>
       </ion-list>
@@ -79,7 +79,7 @@
 
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf="page.pid!=1">
   <ion-toolbar>
     <ion-grid>
       <ion-row>

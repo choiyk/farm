@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
+import { StorageService } from './../../app/service/storage.service';
+
+import { LoginPage } from './../login/login';
+
 /**
  * Generated class for the MyEditPage page.
  *
@@ -15,11 +19,16 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class MyEditPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private storage: StorageService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyEditPage');
+  }
+
+  logout(){
+    this.storage.clear();
+    this.navCtrl.setRoot(LoginPage);
   }
 
   showAlert() {
