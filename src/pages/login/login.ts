@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Loading, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading, ToastController, Events } from 'ionic-angular';
 
 import { AuthService } from './../../app/service/auth.service';
 import { StorageService } from './../../app/service/storage.service';
@@ -26,7 +26,7 @@ export class LoginPage {
   private user : User;
   isEmail : boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: StorageService, private authService : AuthService, private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, private storage: StorageService, private authService : AuthService, private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
     this.user = new User();
     this.storage.getId().then(id=>{console.log('id'+id)});
   }
@@ -47,11 +47,7 @@ export class LoginPage {
       this.authService.login(this.user).then(apiResult=>{
         if(apiResult.success){
           this.user = apiResult.data;
-          this.storage.setUser(this.user);
-          // this.storage.setId(this.user.id);
-          // this.storage.setEmail(this.user.email);
-          // this.storage.setNickname(this.user.nickname);
-          // this.storage.setType(this.user.type.id);
+          this.storage.setUser(this.user).then(data=>this.events.publish('reloadCurrentUser'));
           this.presentToast(apiResult.message);
           this.goHome();
         }

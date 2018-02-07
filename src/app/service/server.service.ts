@@ -11,7 +11,8 @@ import { Pagination } from './../domain/Pagination';
 
 @Injectable()
 export class ServerService {
-  private URL = 'http://localhost:8080/farm/api/';
+  // private URL = 'http://localhost:8080/farm/api/';
+  private URL = 'http://172.30.24.195:8080/farm/api/';
   private http: Http;
   data : Object;
 
@@ -54,6 +55,14 @@ export class ServerService {
     return this.http.get(url)
                     .toPromise()
                     .then(response=>response.json() as MyCrop[])
+                    .catch(this.handleError);
+  }
+
+  getMyCrop(id: number): Promise<MyCrop>{
+    let url = this.URL + 'myCrop/'+id;
+    return this.http.get(url)
+                    .toPromise()
+                    .then(response=>response.json() as MyCrop)
                     .catch(this.handleError);
   }
   

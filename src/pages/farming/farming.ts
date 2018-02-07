@@ -31,8 +31,13 @@ export class FarmingPage implements OnInit {
     this.selectedCrop = "내 작물";
     this.checkAlarm = 0;
 
-    this.events.subscribe('reloadFarming',() => {
+    this.events.subscribe('deleteFarming',() => {
       this.farmings.splice(this.deleteIndex, 1);
+    });
+
+    this.events.subscribe('reloadFarmings',() => {
+      this.pagination.pg = 1;
+      this.server.getFarming(this.pagination).then(data=>this.farmings = data);
     });
   }
 

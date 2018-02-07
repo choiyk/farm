@@ -31,7 +31,7 @@ export class FarmingDetailPage {
 
     this.serevr.getFarmingById(this.navParams.get('id')).then(data=>this.farming = data);
 
-    this.events.subscribe('reloadDetails',() => {
+    this.events.subscribe('reloadFarmings',() => {
       this.serevr.getFarmingById(this.navParams.get('id')).then(data=>this.farming = data);
     });
      
@@ -48,7 +48,7 @@ export class FarmingDetailPage {
   delete(id: number){
     this.serevr.deleteFarming(id).then(data => {
       this.presentToast(data);
-      this.events.publish('reloadFarming');
+      this.events.publish('deleteFarming');
       this.navCtrl.pop();
     });
   }

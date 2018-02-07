@@ -7,8 +7,8 @@ import { User } from './../domain/User';
 export class StorageService {
     constructor(private storage: Storage) { }
 
-    public setUser(user: User){
-        this.storage.set('user', user);
+    public setUser(user: User): Promise<void>{
+        return this.storage.set('user', user);
     }
 
     public getUser(): Promise<User>{

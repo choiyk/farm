@@ -1,5 +1,5 @@
 import { Component, ViewChild, Injector } from '@angular/core';
-import { Nav, Platform, List, App } from 'ionic-angular';
+import { Nav, Platform, List, App, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,7 +22,7 @@ export class MyApp {
   pages: Array<{title: string, subMenu: Array<{id: number, title: string, component: any}>}>;
   nickname : string;
 
-  constructor(private app: App, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, protected injector: Injector, private storage: StorageService) {
+  constructor(private app: App, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, protected injector: Injector, public events: Events, private storage: StorageService) {
     this.initializeApp();
 
     this.storage.getUser().then(user=>{
@@ -34,6 +34,18 @@ export class MyApp {
         this.rootPage = HomePage;
       }
     });
+
+    this.events.subscribe('reloadCurrentUser',() => {
+      this.storage.getUser().then(user=>{
+        if(user===null){
+          this.nickname = "null";
+        }
+        else{
+          this.nickname = user.nickname;
+        }
+      });
+    });
+    
 
     // this.storage.getNickname().then(nickname=>{
     //   if(nickname==null){

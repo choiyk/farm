@@ -91,7 +91,7 @@ save(){
   else{
     this.server.saveFarming(this.farming).then(data=>{
       this.presentToast(data);
-      this.events.publish('reloadDetails');
+      this.events.publish('reloadFarmings');
       this.navCtrl.pop();
     });
   }

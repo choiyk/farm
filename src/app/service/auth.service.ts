@@ -8,7 +8,8 @@ import { APIResult } from './../domain/APIResult';
 
 @Injectable()
 export class AuthService {
-    private URL = 'http://localhost:8080/farm/api/';
+    // private URL = 'http://localhost:8080/farm/api/';
+    private URL = 'http://172.30.24.195:8080/farm/api/';
     private http: Http;
     data : Object;
   
