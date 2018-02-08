@@ -23,9 +23,7 @@
       <button ion-button color="dark" clear full icon-right (click)="goMyEdit()">
         <ion-grid>
           <ion-row>
-            <ion-col col-11 text-left>
-              user
-            </ion-col>
+            <ion-col col-11 text-left *ngIf="cuser">{{cuser}}</ion-col>
             <ion-col col-1>
               <ion-icon name='settings' item-end></ion-icon>
             </ion-col>

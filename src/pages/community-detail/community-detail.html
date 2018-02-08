@@ -1,0 +1,71 @@
+<!--
+  Generated template for the FarmingDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>게시글 상세페이지</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding *ngIf="farming">
+    <ion-grid>
+
+      <ion-row *ngIf="page.pid!=1">
+        <ion-item col-6>
+          <p class="lihgt">딸기</p>
+        </ion-item>
+      </ion-row>
+  
+      <ion-row>
+        <ion-item>
+          {{farming.title}}
+        </ion-item>
+      </ion-row>
+    </ion-grid>
+    <div class="textBox">{{farming.memo}}</div>
+    <!-- <div class="textBox" [froalaView]="editorContent"></div> -->
+  
+    <ion-row padding style="float:right;" *ngIf="page.pid!=1">
+      추천 1개<ion-icon name="thumbs-up" color="primary"></ion-icon> 
+      비추천 2개<ion-icon name="thumbs-down" color="primary"></ion-icon>
+    </ion-row>
+  
+    <ion-row>
+      <button ion-button round color="dark" outline class="save" (click)="edit(farming.id)">수정</button>
+      <button ion-button round color="danger" outline class="save" (click)="delete(farming.id)">삭제</button>
+    </ion-row>
+  
+    <ion-card *ngIf="page.pid!=1">
+      <ion-card-content>
+        <div text-center>댓글이 없습니다.</div>
+        <ion-list>
+          <ion-item>
+            <h3>댓글쓴이 <span class="date light">2017.03.01 10:58</span></h3>
+            <div>댓글 내용</div>
+          </ion-item>
+          <ion-item>
+            <h3><ion-icon name="return-right"></ion-icon>대댓글쓴이 <span class="date light">2017.03.01 10:58</span></h3>
+            <div>댓글 내용</div>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  
+  </ion-content>
+  
+  <ion-footer *ngIf="page.pid!=1">
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-textarea placeholder="댓글을 입력해주세요."></ion-textarea>
+          <button ion-button small item-end >등록</button>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-footer>

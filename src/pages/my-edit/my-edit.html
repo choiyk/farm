@@ -20,20 +20,23 @@
     </ion-item>
     <ion-item>
       <ion-label stacked>비밀번호</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="pw"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>비밀번호 재입력</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="pw2" (change)="checkPw($event)"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="isMatchPw == false">
+      <p class="err"><ion-icon name="alert"></ion-icon>비밀번호가 다릅니다.</p>
     </ion-item>
     <ion-item>
       <ion-label stacked>닉네임</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="nickname"></ion-input>
     </ion-item>
     <button ion-item (click)="logout()">로그아웃<ion-icon md="md-arrow-dropright" item-end class="iconSm"></ion-icon></button>
     <button ion-item (click)="showAlert()">회원 탈퇴<ion-icon md="md-arrow-dropright" item-end class="iconSm"></ion-icon></button> 
   </ion-list>
   <div padding>
-    <button ion-button block>저장</button>
+    <button ion-button block (click)="editMy()">저장</button>
   </div>
 </ion-content>

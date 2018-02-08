@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, Content, Events } from 'ionic-angular';
 import { MyEditPage } from './../my-edit/my-edit';
+
+import { StorageService } from './../../app/service/storage.service';
 
 /**
  * Generated class for the MyPage page.
@@ -16,8 +18,14 @@ import { MyEditPage } from './../my-edit/my-edit';
 })
 export class MyPage {
   @ViewChild(Content) content: Content;
+  cuser: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, public events: Events, private storage: StorageService) {
+    this.storage.getUser().then(user=>this.cuser = user.nickname);
+
+    this.events.subscribe('reloadCurrentUser', () =>{
+      this.storage.getUser().then(user=>this.cuser = user.nickname);
+    });
   }
 
   ionViewDidLoad() {

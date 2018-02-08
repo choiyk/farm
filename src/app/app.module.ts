@@ -24,6 +24,9 @@ import { HomePage } from '../pages/home/home';
 import { FarmingPage } from '../pages/farming/farming';
 import { FarmingEditPage } from './../pages/farming-edit/farming-edit';
 import { FarmingDetailPage } from './../pages/farming-detail/farming-detail';
+import { CommunityPage } from './../pages/community/community';
+import { CommunityEditPage } from './../pages/community-edit/community-edit';
+import { CommunityDetailPage } from './../pages/community-detail/community-detail';
 import { MyPage } from './../pages/my/my';
 import { MyEditPage } from './../pages/my-edit/my-edit';
 import { JoinPage } from './../pages/join/join';
@@ -37,6 +40,9 @@ function getPages(){
     FarmingPage,
     FarmingEditPage,
     FarmingDetailPage,
+    CommunityPage,
+    CommunityEditPage,
+    CommunityDetailPage,
     MyPage,
     MyEditPage,
     LoginPage,
