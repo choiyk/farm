@@ -7,18 +7,36 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <div [froalaEditor]='options'></div>
+<ion-content>
+  <!-- <div [froalaEditor]='options'></div>
   
   <ckeditor name="desc" [(ngModel)]="description" debounce="500">
-  </ckeditor>
+  </ckeditor> -->
+  <ion-row>
+    <ion-col col-2 class="center"><ion-icon name="arrow-dropleft"></ion-icon></ion-col>
+    <ion-col class="center"><ion-datetime displayFormat="MM/DD" [(ngModel)]="date" (ionChange)="dateChange($event)"></ion-datetime></ion-col>
+    <ion-col col-2 class="center"><ion-icon name="arrow-dropright" end></ion-icon></ion-col>
+  </ion-row>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-item (click)="goFarmingDetail()">
+    <ion-thumbnail item-start>
+      <img src="../assets/imgs/logo.png">
+    </ion-thumbnail>
+    <h2>My Neighbor Totoro</h2>
+    <p>01/01-03/31</p>
+    <p>Hayao Miyazaki • 1988</p>
+  </ion-item>
+  <ion-item (click)="goFarmingDetail()">
+    <h2>My Neighbor Totoro</h2>
+    <p>01/01-03/31</p>
+    <p>Hayao Miyazaki • 1988</p>
+  </ion-item>
+  
+  <ion-footer>
+    <ion-row>
+      <ion-col col-6 class="center rborder">검색</ion-col>
+      <ion-col col-6 class="center">글 작성</ion-col>
+    </ion-row>
+  </ion-footer>
 </ion-content>
 

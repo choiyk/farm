@@ -31,7 +31,7 @@ export class MyApp {
       }
       else{
         this.nickname = user.nickname;
-        this.rootPage = HomePage;
+        this.rootPage = FarmingPage;
       }
     });
 

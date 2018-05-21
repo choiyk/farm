@@ -25,9 +25,11 @@ export class FarmingPage implements OnInit {
   deleteIndex: number;
   selectedCrop: string;
   checkAlarm: number;
+  date: string = new Date().toISOString();
 
   constructor(public events: Events, public navCtrl: NavController, public navParams:NavParams, public menuCtrl: MenuController, private storage: StorageService, private server: ServerService, public alertCtrl: AlertController) {
-    this.page = {pid:this.navParams.get('pid'), name:this.navParams.get('name')};
+    // this.page = {pid:this.navParams.get('pid'), name:this.navParams.get('name')};
+    this.page = {pid:1, name:'영농일기'};
     this.selectedCrop = "내 작물";
     this.checkAlarm = 0;
 
@@ -44,7 +46,7 @@ export class FarmingPage implements OnInit {
   ngOnInit() {
     this.storage.getUser().then(user=>{
       this.server.getMyCrops(user.id).then(data=>this.myCrops = data);
-      this.pagination = new Pagination(user.id, 0, 1, 10, 0, 0);
+      this.pagination = new Pagination(user.id, this.dateFormat(this.date), 0, 1, 10, 0, 0, 0);
       this.server.getFarming(this.pagination).then(data=>this.farmings = data);
     });
   }
@@ -60,6 +62,20 @@ export class FarmingPage implements OnInit {
   goFarmingDetail(id: number, index:number){
     this.deleteIndex = index;
     this.navCtrl.push(FarmingDetailPage, {id:id, pid: this.page.pid});
+  }
+
+  dateChange(){
+    console.log(this.date);
+    this.pagination.date = this.dateFormat(this.date);
+    this.pagination.pg = 1;
+    this.server.getFarming(this.pagination).then(data=>this.farmings = data);
+  }
+
+  dateFormat(d:string): string{
+    let pattern = new RegExp("([0-9]{4})-([0-9]{2}-[0-9]{2})");
+    let result = pattern.exec(d);
+    console.log("match: "+result[2]);
+    return result[2];
   }
 
   scrollToTop() {
@@ -98,7 +114,7 @@ export class FarmingPage implements OnInit {
           this.selectedCrop = this.myCrops[Number(data)].crop;
         }
         
-        this.pagination.sb = cropId;
+        this.pagination.ci = cropId;
         this.pagination.pg = 1;
         this.server.getFarming(this.pagination).then(data=>this.farmings = data);
       }

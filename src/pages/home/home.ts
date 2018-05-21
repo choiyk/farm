@@ -9,6 +9,8 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage {
 
+  date: string = new Date().toISOString();
+
   constructor(public navCtrl: NavController, private storage: Storage) {
     this.storage.get('id').then((val) => {
       console.log('Your id is', val);
@@ -16,6 +18,11 @@ export class HomePage {
     this.storage.get('nickname').then((val) => {
       console.log('Your nickname is', val);
     });
+
+  }
+
+  dateChange(){
+    console.log(this.date);
   }
 
 }

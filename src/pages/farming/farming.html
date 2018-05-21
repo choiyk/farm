@@ -20,17 +20,23 @@
   </ion-refresher>
 
   <ion-toolbar>
+    <ion-row>
+      <!-- <ion-col col-2 class="center"><ion-icon name="arrow-dropleft"></ion-icon></ion-col> -->
+      <ion-col class="center"><ion-datetime displayFormat="MM/DD" [(ngModel)]="date" (ionChange)="dateChange($event)" style="padding:0px;"></ion-datetime></ion-col>
+      <!-- <ion-col col-2 class="center"><ion-icon name="arrow-dropright" end></ion-icon></ion-col> -->
+    </ion-row> 
+  </ion-toolbar>
     <ion-grid>
       <ion-row *ngIf="page.pid==1">
-        <ion-col col-4 *ngIf="myCrops && selectedCrop">
-          <div (click)="showMyCrop()">{{selectedCrop}}<ion-icon name="arrow-dropdown" item-end></ion-icon> </div>
+        <ion-col *ngIf="myCrops && selectedCrop" (click)="showMyCrop()">
+          <label>{{selectedCrop}}</label><ion-icon name="arrow-dropdown" style="float:right;"></ion-icon>
         </ion-col>
         <ion-col></ion-col>
-        <ion-col col-4>
-          <label>알람모아보기</label><ion-checkbox [checked]="checkAlarm==1?true:false" (click)="showAlarm()"></ion-checkbox>
+        <ion-col col-2>
+          <label>알람</label><ion-checkbox [checked]="checkAlarm==1?true:false" (click)="showAlarm()"></ion-checkbox>
         </ion-col>
-        <ion-col (click)="goFarmingEdit()" col-1>
-          <ion-icon name="add" class="black" style="float:right;"></ion-icon>
+        <ion-col col-3 (click)="goFarmingEdit()" >
+          <label>일기작성</label><ion-icon name="add" class="black" end></ion-icon>
         </ion-col>
       </ion-row>
 
@@ -52,47 +58,46 @@
       </ion-row> -->
 
     </ion-grid>
-  </ion-toolbar>
   
-  <ion-list *ngIf="farmings">
-    <!-- <ion-item (click)="goFarmingDetail()">
-      <ion-row>
-        <button ion-button color="danger" class="buttonXs">추천</button>
+    <ion-list *ngIf="farmings">
+      <!-- <ion-item (click)="goFarmingDetail()">
+        <ion-row>
+          <button ion-button color="danger" class="buttonXs">추천</button>
+          <h2>My Neighbor Totoro</h2>
+        </ion-row>
+        <p>01/01-03/31</p>
+        <p>Hayao Miyazaki • 1988</p>
+      </ion-item>
+      <ion-item (click)="goFarmingDetail()">
+        <ion-thumbnail item-start>
+          <img src="../assets/imgs/logo.png">
+        </ion-thumbnail>
         <h2>My Neighbor Totoro</h2>
-      </ion-row>
-      <p>01/01-03/31</p>
-      <p>Hayao Miyazaki • 1988</p>
-    </ion-item>
-    <ion-item (click)="goFarmingDetail()">
-      <ion-thumbnail item-start>
-        <img src="../assets/imgs/logo.png">
-      </ion-thumbnail>
-      <h2>My Neighbor Totoro</h2>
-      <p>01/01-03/31</p>
-      <p>Hayao Miyazaki • 1988</p>
-    </ion-item>
-    <ion-item (click)="goFarmingDetail()">
-      <h2>My Neighbor Totoro</h2>
-      <p>01/01-03/31</p>
-      <p>Hayao Miyazaki • 1988</p>
-    </ion-item> -->
-    <ion-item *ngFor="let f of farmings; let i = index" (click)="goFarmingDetail(f.id, i)">
-      <ion-row *ngIf="f.alarm==1">
-        <button ion-button color="danger" class="buttonXs">알람</button>
-        <h2>[{{f.myCrop.crop}}] {{f.title}}</h2>
-      </ion-row>
-      <h2 *ngIf="f.alarm!=1">[{{f.myCrop.crop}}] {{f.title}}</h2>
-      <p>{{f.startDate}} ~ {{f.endDate}}</p>
-      <p>{{f.memo}}</p>
-    </ion-item>
-  </ion-list>
+        <p>01/01-03/31</p>
+        <p>Hayao Miyazaki • 1988</p>
+      </ion-item>
+      <ion-item (click)="goFarmingDetail()">
+        <h2>My Neighbor Totoro</h2>
+        <p>01/01-03/31</p>
+        <p>Hayao Miyazaki • 1988</p>
+      </ion-item> -->
+      <ion-item *ngFor="let f of farmings; let i = index" (click)="goFarmingDetail(f.id, i)">
+        <ion-row *ngIf="f.alarm==1">
+          <button ion-button color="danger" class="buttonXs">알람</button>
+          <h2>[{{f.myCrop.crop}}] {{f.title}}</h2>
+        </ion-row>
+        <h2 *ngIf="f.alarm!=1">[{{f.myCrop.crop}}] {{f.title}}</h2>
+        <p>{{f.startDate}} ~ {{f.endDate}}</p>
+        <p>{{f.memo}}</p>
+      </ion-item>
+    </ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
 
 
